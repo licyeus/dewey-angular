@@ -12,7 +12,7 @@ html(lang='en' ng-app='MyApp')
           .form-group
             input.form-control(type='text', ng-model='search.query', placeholder='Search bookmarks')
         ul.search-results
-          li.search-result(ng-repeat='bookmark in search.bookmarks | filter:search.query | reverse | limitTo: 100')
+          li.search-result(ng-repeat='bookmark in search.bookmarks | search:search.query | reverse | limitTo: 100')
             a(href='{{ bookmark.href }}')
               div.bookmark-title {{ bookmark.description }}
               div.bookmark-href {{ bookmark.href }}

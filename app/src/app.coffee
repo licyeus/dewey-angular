@@ -6,13 +6,10 @@ class SearchController
       @bookmarks = bookmarks
 
   tagClick: (tag) ->
-    console.log 'clicked tag', tag
+    @query ||= ''
+    @query += " ##{tag}"
 
 myApp.controller 'SearchController', ['BookmarkService', SearchController]
-
-myApp.filter 'reverse', ->
-  (items) ->
-    items.slice().reverse() if angular.isArray(items)
 
 myApp.factory 'BookmarkService', ($q, $http) ->
   all: ->
@@ -20,3 +17,21 @@ myApp.factory 'BookmarkService', ($q, $http) ->
     $http.get('data/bookmarks.json').then (response) ->
       deferred.resolve(response.data)
     deferred.promise
+
+class Searcher
+  constructor: (@queryRegex) ->
+
+  parse: (searchQuery = '') ->
+    matches = searchQuery.match(@queryRegex)
+
+myApp.filter 'search', ->
+  QUERY_REGEX = /(.*)#(.*)/
+  searcher = new Searcher(QUERY_REGEX)
+
+  (items, searchQuery) =>
+    items
+
+myApp.filter 'reverse', ->
+  (items) ->
+    items.slice().reverse() if angular.isArray(items)
+
