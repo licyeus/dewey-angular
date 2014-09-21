@@ -12,15 +12,18 @@ html(lang='en' ng-app='MyApp')
           .form-group
             input.form-control(type='text', ng-model='search.query', placeholder='Search bookmarks')
         ul.search-results
-          li.search-result(ng-repeat='bookmark in search.bookmarks | search:search.query | reverse | limitTo: 100')
+          li.search-result(ng-repeat='bookmark in search.filteredBookmarks | limitTo: 100')
             a(href='{{ bookmark.href }}')
               div.bookmark-title {{ bookmark.description }}
               div.bookmark-href {{ bookmark.href }}
               span.bookmark-tags
-                a(ng-repeat='tag in bookmark.tags.split(" ")', ng-click='search.tagClick(tag)')
+                a(ng-repeat='tag in bookmark.tags', ng-click='search.tagClick(tag)')
                   | {{ tag }} - 
+        p.pull-right
+          {{ search.filteredBookmarks.length }} results
 
 
+    script(src='/lib/lodash/dist/lodash.js')
     script(src='/lib/jquery/dist/jquery.js')
     script(src='/lib/bootstrap/dist/js/bootstrap.js')
     script(src='/lib/angular/angular.js')
