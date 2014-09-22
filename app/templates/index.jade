@@ -8,6 +8,11 @@ html(lang='en' ng-app='MyApp')
   body
     .container.search-box
       .well
+        ol.nav
+          li(ui-sref-active='active')
+            a(ui-sref='add') Add Bookmark
+          li(ui-sref-active='active')
+            a(ui-sref='results') Search Bookmarks
         ui-view
 
     script(src='/lib/lodash/dist/lodash.js')
