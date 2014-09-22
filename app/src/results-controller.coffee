@@ -9,14 +9,14 @@ class ResultsController
         bookmark.searchable = bookmark.description.toLowerCase()
         bookmark.tagsArray = bookmark.tags.split(' ')
         bookmark
-      @filteredBookmarks = bookmarks.reverse()
+      @filteredBookmarks = @bookmarks.reverse()
 
     debounced = null
     $scope.$watch 'results.query', (newVal) =>
       $timeout.cancel(debounced)
       debounced = $timeout =>
         parsedSearchQuery = @searcher.parse(newVal)
-        @filteredBookmarks = @searcher.search(@bookmarks, parsedSearchQuery).reverse() if @bookmarks
+        @filteredBookmarks = @searcher.search(@bookmarks, parsedSearchQuery) if @bookmarks
       , 200
 
   tagClick: (tag) ->

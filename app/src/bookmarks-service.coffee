@@ -1,14 +1,15 @@
-myApp = angular.module 'MyApp'
+angular.module 'MyApp'
+.factory 'BookmarkService', ($q, $http) ->
+  @bookmarks = []
 
-myApp.factory 'BookmarkService', ($q, $http) ->
   getBookmarks: ->
     deferred = $q.defer()
-    if @bookmarks
+    if @bookmarks && @bookmarks.length > 0
       deferred.resolve(@bookmarks)
     else
       $http.get('data/bookmarks.json').then (response) =>
         # TODO: index/sort bookmarks for faster searches
-        @bookmarks = response.data || []
+        @bookmarks = response.data.reverse() || []
         deferred.resolve(@bookmarks)
     deferred.promise
 
