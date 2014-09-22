@@ -1,0 +1,18 @@
+h2 Add Bookmark
+form(role='form', ng-submit='add.saveBookmark(add.bookmark)')
+  .form-group
+    label URL
+    input.form-control(type='text', ng-model='add.bookmark.href')
+  .form-group
+    label Title
+    input.form-control(type='text', ng-model='add.bookmark.description')
+  .form-group
+    label Tags
+    input.form-control(type='text', ng-model='add.bookmark.tags')
+  .form-group
+    label Notes
+    textarea.form-control(type='text', ng-model='add.bookmark.notes')
+  .row
+    .col-xs-12
+      button.btn.btn-primary.pull-right(type='submit') Save Bookmark
+

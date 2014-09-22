@@ -6,22 +6,9 @@ html(lang='en' ng-app='MyApp')
     link(rel='stylesheet', href='/css/app.css')
     link(rel='stylesheet', href='/lib/bootstrap/dist/css/bootstrap.css')
   body
-    .container.search-box(ng-controller='SearchController as search')
+    .container.search-box
       .well
-        form(role='form')
-          .form-group
-            input.form-control(type='text', ng-model='search.query', placeholder='Search bookmarks')
-        ul.search-results
-          li.search-result(ng-repeat='bookmark in search.filteredBookmarks | limitTo: 100')
-            a(href='{{ bookmark.href }}')
-              div.bookmark-title {{ bookmark.description }}
-              div.bookmark-href {{ bookmark.href }}
-              span.bookmark-tags
-                a(ng-repeat='tag in bookmark.tags', ng-click='search.tagClick(tag)')
-                  | {{ tag }} - 
-        p.pull-right
-          {{ search.filteredBookmarks.length }} results
-
+        ui-view
 
     script(src='/lib/lodash/dist/lodash.js')
     script(src='/lib/jquery/dist/jquery.js')
