@@ -1,13 +1,15 @@
-form(role='form')
-  .form-group
-    input.form-control(type='text', ng-model='results.query', placeholder='Search bookmarks')
-ul.search-results
-  li.search-result(ng-repeat='bookmark in results.filteredBookmarks | limitTo: 100')
-    a(href='{{ bookmark.href }}')
-      div.bookmark-title {{ bookmark.description }}
-      div.bookmark-href {{ bookmark.href }}
-      span.bookmark-tags
-        a(ng-repeat='tag in bookmark.tagsArray', ng-click='results.tagClick(tag)')
-          | {{ tag }} - 
-p.pull-right {{ results.filteredBookmarks.length }} results
+.row
+  .col-xs-12
+    form(role='form')
+      .form-group
+        input.form-control(type='text', ng-model='results.query', placeholder='Search bookmarks')
+    ul.search-results
+      li.search-result(ng-repeat='bookmark in results.filteredBookmarks | limitTo: 100')
+        a(href='{{ bookmark.href }}')
+          div.bookmark-title {{ bookmark.description }}
+          div.bookmark-href {{ bookmark.href }}
+          span.bookmark-tags
+            a(ng-repeat='tag in bookmark.tagsArray', ng-click='results.tagClick(tag)')
+              | {{ tag }} - 
+    p.results-count.pull-right {{ results.filteredBookmarks.length }} results
 
