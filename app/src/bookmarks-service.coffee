@@ -1,27 +1,42 @@
 angular.module 'MyApp'
-.factory 'BookmarkService', ($q, $http) ->
-  @bookmarks = []
+.factory 'BookmarkService', ($q, PinboardSync) ->
+  loadBookmarksFromStore = ->
+    deferred = $q.defer()
+    b = store.get('bookmarks')
+    if b && Array.isArray(b)
+      deferred.resolve(b)
+    else
+      PinboardSync.loadBookmarks().then (b) =>
+        # TODO: index/sort bookmarks for faster searches
+        store.set('bookmarks', b.reverse())
+        deferred.resolve(store.get('bookmarks'))
+    deferred.promise
 
   getBookmarks: ->
     deferred = $q.defer()
     if @bookmarks && @bookmarks.length > 0
       deferred.resolve(@bookmarks)
     else
-      $http.get('data/bookmarks.json').then (response) =>
-        # TODO: index/sort bookmarks for faster searches
-        @bookmarks = response.data.reverse() || []
+      loadBookmarksFromStore().then (data) =>
+        @bookmarks = data
         deferred.resolve(@bookmarks)
     deferred.promise
 
   save: (bookmark) ->
-    deferred = $q.defer()
-    # TODO: persist bookmark
+    bookmark.needsSync = true
+
     existing = _.find @bookmarks, (b) -> b.href == bookmark.href
     index = _.indexOf(@bookmarks, existing) # TODO: combine this with above line for performance
+
     if index != -1
       @bookmarks[index] = bookmark
     else
       @bookmarks.push(bookmark)
+
+    store.set('bookmarks', @bookmarks)
+    PinboardSync.save(@bookmarks)
+
+    deferred = $q.defer()
     deferred.resolve(bookmark)
     deferred.promise
 

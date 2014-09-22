@@ -3,6 +3,8 @@ class ResultsController
     QUERY_REGEX = /(#\w*)/g
     @searcher = new Searcher(QUERY_REGEX)
     @query ||= ''
+    @bookmarks = []
+    @filteredBookmarks = []
 
     BookmarkService.getBookmarks().then (bookmarks) =>
       @bookmarks = _.map bookmarks, (bookmark) ->

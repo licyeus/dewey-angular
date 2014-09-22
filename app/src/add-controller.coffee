@@ -7,4 +7,4 @@ class AddController
 
   checkIfExists: (href) ->
     @BookmarkService.loadIfExists(href).then (bookmark) =>
-      @bookmark = bookmark
+      @bookmark = bookmark if bookmark
