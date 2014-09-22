@@ -1,4 +1,4 @@
-angular.module 'MyApp'
+angular.module 'dewey'
 .factory 'BookmarkService', ($q, PinboardSync) ->
   loadBookmarksFromStore = ->
     deferred = $q.defer()

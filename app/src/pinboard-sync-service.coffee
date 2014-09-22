@@ -1,4 +1,4 @@
-angular.module 'MyApp'
+angular.module 'dewey'
 .factory 'PinboardSync', ($q, $http) ->
   save: (@bookmarks) ->
     bookmarksToSync = _.where @bookmarks, (bookmark) -> bookmark.needsSync

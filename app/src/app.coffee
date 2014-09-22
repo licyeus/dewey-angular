@@ -1,6 +1,5 @@
-myApp = angular.module 'MyApp', ['ui.router']
-
-myApp.config ($stateProvider, $urlRouterProvider) ->
+angular.module 'dewey', ['ui.router']
+.config ($stateProvider, $urlRouterProvider) ->
   $urlRouterProvider.otherwise 'add'
 
   $stateProvider
