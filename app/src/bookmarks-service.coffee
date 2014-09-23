@@ -24,6 +24,8 @@ angular.module 'dewey'
 
   save: (bookmark) ->
     bookmark.needsSync = true
+    # TODO: better validation of bookmark schema
+    bookmark.tags = bookmark.tags || ''
 
     existing = _.find @bookmarks, (b) -> b.href == bookmark.href
     index = _.indexOf(@bookmarks, existing) # TODO: combine this with above line for performance

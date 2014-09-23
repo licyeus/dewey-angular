@@ -13,4 +13,6 @@ angular.module 'dewey', ['ui.router']
       templateUrl: 'results.html'
       controller: 'ResultsController as results'
     }
+.run ->
+
 
