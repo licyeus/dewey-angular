@@ -10,13 +10,14 @@ html(lang='en' ng-app='dewey')
       .well
         ul.nav.nav-pills(role='tablist')
           li(ui-sref-active='active')
-            a(ui-sref='add') Add Bookmark
+            a(ui-sref='add') &#x2318;1 Add Bookmark
           li(ui-sref-active='active')
-            a(ui-sref='results') Search Bookmarks
+            a(ui-sref='results') &#x2318;2 Search Bookmarks
         ui-view
 
     script(src='/lib/lodash/dist/lodash.js')
     script(src='/lib/store/dist/store2.js')
+    script(src='/lib/mousetrap/mousetrap.js')
     script(src='/lib/angular/angular.js')
     script(src='/lib/angular-ui-router/release/angular-ui-router.js')
 

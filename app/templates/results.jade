@@ -2,7 +2,7 @@
   .col-xs-12
     form(role='form')
       .form-group
-        input.form-control(type='text', ng-model='results.query', placeholder='Search bookmarks')
+        input.form-control.mousetrap(type='text', ng-model='results.query', placeholder='Search bookmarks')
     ul.search-results
       li.search-result(ng-repeat='bookmark in results.filteredBookmarks | limitTo: 100 track by $index')
         a(href='{{ bookmark.href }}')

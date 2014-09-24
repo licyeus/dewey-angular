@@ -13,6 +13,7 @@ angular.module 'dewey', ['ui.router']
       templateUrl: 'results.html'
       controller: 'ResultsController as results'
     }
-.run ->
-
+.run ($state) ->
+  Mousetrap.bind 'command+1', -> $state.go 'add'
+  Mousetrap.bind 'command+2', -> $state.go 'results'
 

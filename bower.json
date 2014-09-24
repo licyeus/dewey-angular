@@ -17,6 +17,7 @@
     "angular-ui-router": "~0.2.11",
     "bootstrap": "~3.2.0",
     "lodash": "~2.4.1",
-    "store": "~2.1.6"
+    "store": "~2.1.6",
+    "mousetrap": "~1.4.6"
   }
 }
