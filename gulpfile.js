@@ -41,7 +41,17 @@ gulp.task('coffee', function() {
     .pipe(connect.reload());
 });
 
-gulp.task('build', ['templates', 'less', 'coffee']);
+var filesToMove = [
+  './app/img/**/*.*',
+  './app/manifest.json'
+];
+
+gulp.task('move', function() {
+  gulp.src(filesToMove, { base: './app/' })
+    .pipe(gulp.dest('dist'));
+});
+
+gulp.task('build', ['templates', 'less', 'coffee', 'move']);
 
 gulp.task('watch', function() {
   gulp.watch([source + 'templates/**/*.jade'], ['templates']);

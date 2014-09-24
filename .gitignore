@@ -1,6 +1,1 @@
-dist/css/*
-dist/data/*
-dist/img/*
-dist/lib/*
-dist/src/*
-dist/*.html
+dist/*
