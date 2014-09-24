@@ -1,7 +1,7 @@
 form(role='form', ng-submit='add.saveBookmark(add.bookmark)')
   .form-group
     label URL
-    input.form-control.mousetrap(type='text', ng-model='add.bookmark.href', ng-blur='add.checkIfExists(add.bookmark.href)')
+    input.form-control.mousetrap(type='text', ng-model='add.bookmark.href', ng-blur='add.checkIfExists(add.bookmark.href)', autofocus='true')
   .form-group
     label Title
     input.form-control.mousetrap(type='text', ng-model='add.bookmark.description')
