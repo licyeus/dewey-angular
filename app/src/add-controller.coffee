@@ -4,7 +4,7 @@ class AddController
 
   loadCurrentTab: ->
     # TODO: move into service
-    #chrome = { tabs: { query: (q, c) -> c([{ url: 'http://google.com', title: 'google :(' }]) } }
+    chrome = chrome || { tabs: { query: (q, c) -> c([{ url: 'http://google.com', title: 'google :(' }]) } }
     query = { active: true, currentWindow: true }
     chrome.tabs.query query, (tabs) =>
       tab = tabs[0] || {}
@@ -12,7 +12,7 @@ class AddController
         href: tab.url
         description: tab.title
       }
-      @$scope.$digest()
+      @$scope.$digest() unless @$scope.$$phase
 
   saveBookmark: (bookmark) ->
     @BookmarkService.save(bookmark).then =>
