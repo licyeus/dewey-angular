@@ -4,7 +4,8 @@ class AddController
 
   loadCurrentTab: ->
     # TODO: move into service
-    chrome = chrome || { tabs: { query: (q, c) -> c([{ url: 'http://google.com', title: 'google :(' }]) } }
+    #chrome = { tabs:  { query: (q, c) -> c([{ url: 'http://google.com', title: 'google!' }]) } }
+
     query = { active: true, currentWindow: true }
     chrome.tabs.query query, (tabs) =>
       tab = tabs[0] || {}
