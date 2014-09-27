@@ -5,7 +5,7 @@
         input.form-control.mousetrap(type='text', ng-model='results.query', placeholder='Search bookmarks', autofocus='true')
     ul.search-results
       li.search-result(ng-repeat='bookmark in results.filteredBookmarks | limitTo: 100 track by $index')
-        a(href='{{ bookmark.href }}')
+        a(ng-click='results.openBookmark(bookmark)')
           div.bookmark-title {{ bookmark.description }}
           div.bookmark-href {{ bookmark.href }}
           span.bookmark-tags

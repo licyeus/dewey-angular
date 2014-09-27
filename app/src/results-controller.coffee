@@ -24,3 +24,9 @@ class ResultsController
   tagClick: (tag) ->
     @query = [@query, "##{tag}"].join(' ').trim()
 
+  openBookmark: (bookmark) ->
+    if chrome
+      chrome.tabs.update null, { url: bookmark.href }
+      window.close()
+    else
+      window.location.href = bookmark.href
