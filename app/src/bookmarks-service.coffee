@@ -6,9 +6,9 @@ angular.module 'dewey'
     if b && Array.isArray(b)
       deferred.resolve(b)
     else
-      PinboardSync.loadBookmarks().then (b) =>
+      PinboardSync.loadBookmarks({ all: true }).then (bookmarks) =>
         # TODO: index/sort bookmarks for faster searches
-        store.set('bookmarks', b.reverse())
+        store.set('bookmarks', bookmarks.reverse())
         deferred.resolve(store.get('bookmarks'))
     deferred.promise
 
@@ -35,8 +35,9 @@ angular.module 'dewey'
     else
       @bookmarks.push(bookmark)
 
-    store.set('bookmarks', @bookmarks)
-    PinboardSync.save(@bookmarks)
+    PinboardSync.save(@bookmarks).then (bookmarks) =>
+      _.each @bookmarks, (bookmark) -> delete bookmark.needsSync
+      store.set('bookmarks', @bookmarks)
 
     deferred = $q.defer()
     deferred.resolve(bookmark)

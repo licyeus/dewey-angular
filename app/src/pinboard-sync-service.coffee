@@ -25,7 +25,9 @@ angular.module 'dewey'
       params = { url: pinboard_url }
       allPromises.push $http({ method: 'GET', url: proxy_url, params: params })
     $q.all(allPromises).then (data) ->
-      deferred.resolve(data)
+      _.each bookmarksToSync, (bookmark) ->
+        bookmark.needsSync = false
+      deferred.resolve(@bookmarks)
     deferred.promise
 
   loadBookmarks: (opts = {}) ->
@@ -36,6 +38,5 @@ angular.module 'dewey'
     deferred = $q.defer()
     params = { url: pinboard_url }
     $http({ method: 'GET', url: proxy_url, params: params }).then (response) ->
-      debugger
       deferred.resolve(response.data)
     deferred.promise
