@@ -1,6 +1,7 @@
 class AddController
-  constructor: (@$scope, @$state, @$timeout, @BookmarkService) ->
+  constructor: (@$scope, @$state, @$timeout, @BookmarkService, @TagService) ->
     @loadCurrentTab()
+    @loadTags()
 
   loadCurrentTab: ->
     # TODO: move into service
@@ -22,3 +23,8 @@ class AddController
   checkIfExists: (href) ->
     @BookmarkService.loadIfExists(href).then (bookmark) =>
       @bookmark = bookmark if bookmark
+
+  loadTags: ->
+    @TagService.getTags().then (tags) =>
+      @tags = tags
+      $('#tags-input').select2()

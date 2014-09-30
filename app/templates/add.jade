@@ -7,7 +7,7 @@ form(role='form', ng-submit='add.saveBookmark(add.bookmark)')
     input.form-control.mousetrap(type='text', ng-model='add.bookmark.description')
   .form-group
     label Tags
-    input.form-control.mousetrap(type='text', ng-model='add.bookmark.tags')
+    select#tags-input.form-control.mousetrap(multiple='multiple', ng-model='add.bookmark.tags', ng-options='tag as tag for tag in add.tags')
   .form-group
     label Notes
     textarea.form-control.mousetrap(type='text', ng-model='add.bookmark.notes')

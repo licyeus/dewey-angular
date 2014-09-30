@@ -5,6 +5,8 @@ html(lang='en' ng-app='dewey')
     title Dewey
     link(rel='stylesheet', href='/css/app.css')
     link(rel='stylesheet', href='/lib/bootstrap/dist/css/bootstrap.css')
+    link(rel='stylesheet', href='/lib/select2/select2.css')
+    link(rel='stylesheet', href='/lib/select2-bootstrap-css/select2-bootstrap.css')
   body
     .container.search-box
       .well
@@ -16,6 +18,8 @@ html(lang='en' ng-app='dewey')
         ui-view
 
     script(src='/lib/lodash/dist/lodash.js')
+    script(src='/lib/jquery/dist/jquery.js')
+    script(src='/lib/select2/select2.js')
     script(src='/lib/store/dist/store2.js')
     script(src='/lib/mousetrap/mousetrap.js')
     script(src='/lib/angular/angular.js')
@@ -25,6 +29,7 @@ html(lang='en' ng-app='dewey')
 
     script(src='/src/app.js')
     script(src='/src/bookmarks-service.js')
+    script(src='/src/tag-service.js')
     script(src='/src/pinboard-sync-service.js')
     script(src='/src/results-controller.js')
     script(src='/src/add-controller.js')
